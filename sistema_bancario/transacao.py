@@ -1,4 +1,5 @@
 import datetime
+from util import Util
 
 class Transacao:
     saldo = 1000.0
@@ -18,7 +19,7 @@ class Transacao:
         if valor <= self.saldo and valor <= self.limite:
             if self.qtd_saque_dia <= self.QTD_SAQUE_MAXIMO_DIA:
                 self.saldo -= valor
-                msg = "➖ Saque realizado com sucesso!"
+                msg = "➖ Saque realizado com sucesso!   "
                 self.gravar_log("S", valor, msg)
                 self.qtd_saque_dia += 1
                 print(f"✅ Saque de R$ {valor:.2f} realizado com sucesso!")
@@ -34,6 +35,8 @@ class Transacao:
         print("Log gravado com sucesso!")
                                                      
     def consultar_log(self):
+        tools = Util()
+
         print("\n-----------------------------------------------------------------------------")
         print("Movimentações do dia:")
         print("-----------------------------------------------------------------------------")
@@ -44,4 +47,5 @@ class Transacao:
         else:
             print("❌ Nenhuma movimentação encontrado!")
         print("-----------------------------------------------------------------------------")
-        print(f"Saldo atual: {self.saldo:.2f}")
+        saldo_final = tools.formatToReal(self.saldo)
+        print(f"💰 Saldo atual: {saldo_final}")
