@@ -61,18 +61,25 @@ class Main:
 
             if valor_deposito > 0 :
                 self.transacao.depositar(valor_deposito)
-                print(f"✅ Depósito de R$ {valor_deposito:.2f} realizado com sucesso!")
+                #print(f"✅ Depósito de R$ {valor_deposito:.2f} realizado com sucesso!")
             else:
                 print("❌ O valor do depósito deve ser positivo!")
         except ValueError:
             print("❌ Entrada inválida! Digite um valor numérico.")
 
     def retirar(self):
-        """
-        Método responsável por realizar um saque.
-        (Ainda não implementado, apenas exibe uma mensagem).
-        """
-        print("Retirando...")
+
+        try:
+            valor_saque= float(input("Digite o valor a ser sacado: ").strip())
+
+            if valor_saque > 0 :
+                self.transacao.retirar(valor_saque)
+                #print(f"✅ Saque de R$ {valor_saque:.2f} realizado com sucesso!")
+            else:
+                print("❌ O valor do saque deve ser positivo!")
+        except ValueError:
+            print("❌ Entrada inválida! Digite um valor numérico.")
+
 
     def consultar_saldo(self):
         """
