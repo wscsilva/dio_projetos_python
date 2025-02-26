@@ -18,5 +18,9 @@ class Transacao:
         print("Log gravado com sucesso!")
 
     def consultar_log(self):
-        for log in self.logs:
-            print(log)
+        logs = self.logs
+        if logs:
+            for log in self.logs:
+                print(log)
+        else:
+            print("❌ Nenhuma movimentação encontrado!")
