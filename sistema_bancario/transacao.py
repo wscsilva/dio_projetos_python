@@ -14,7 +14,7 @@ class Transacao:
     def gravar_log(self, valor):
         # Gravar a data
         # Separar por tipo ex: D deposito, S saque
-        self.logs.append(f"Deposito efetuado com sucesso, no valor de: {valor}")
+        self.logs.append(f"Deposito efetuado com sucesso, no valor de: R$ {valor:.2f}")
         print("Log gravado com sucesso!")
 
     def consultar_log(self):

@@ -17,10 +17,8 @@ class Main:
 
             # Verifica qual opção foi escolhida e executa a ação correspondente
             if opcao == "1":
-                # Solicita o valor do depósito ao usuário
-                valor_deposito = input("Digite o valor a ser depositado: ").strip()
                 # Converte o valor para float e chama o método depositar
-                self.depositar(float(valor_deposito)) 
+                self.depositar() 
             elif opcao == "2":
                 # Chama o método retirar
                 self.retirar()
@@ -51,13 +49,23 @@ class Main:
         print("4. Consultar log")
         print("5. Sair")
 
-    def depositar(self, valor):
+    def depositar(self):
         """
         Método responsável por realizar um depósito na conta bancária.
         Chama o método depositar da classe Transacao.
         :param valor: Valor a ser depositado (float)
         """
-        self.transacao.depositar(valor)
+        try:
+            # Solicita o valor do depósito ao usuário
+            valor_deposito = float(input("Digite o valor a ser depositado: ").strip())
+
+            if valor_deposito > 0 :
+                self.transacao.depositar(valor_deposito)
+                print(f"✅ Depósito de R$ {valor_deposito:.2f} realizado com sucesso!")
+            else:
+                print("❌ O valor do depósito deve ser positivo!")
+        except ValueError:
+            print("❌ Entrada inválida! Digite um valor numérico.")
 
     def retirar(self):
         """
