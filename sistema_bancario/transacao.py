@@ -8,12 +8,14 @@ class Transacao:
     QTD_SAQUE_MAXIMO_DIA = 3
     logs = []
 
+    tools = Util()
+
     def depositar(self, valor):
         print(f"Saldo anterior: {self.saldo}")
         self.saldo += valor
         msg = "➕ Depósito realizado com sucesso!"
         self.gravar_log("D", valor, msg)
-        print(f'Depósito realizado com sucesso! Saldo atual: {self.saldo}')
+        print(f'✅ Depósito realizado com sucesso! Saldo atual: {self.tools.formatToReal(self.saldo)}')
 
     def retirar(self, valor):
         if valor <= self.saldo and valor <= self.limite:
@@ -22,11 +24,11 @@ class Transacao:
                 msg = "➖ Saque realizado com sucesso!   "
                 self.gravar_log("S", valor, msg)
                 self.qtd_saque_dia += 1
-                print(f"✅ Saque de R$ {valor:.2f} realizado com sucesso!")
+                print(f"✅ Saque de {self.tools.formatToReal(valor)} realizado com sucesso!")
             else:
                 print(f"⚠️ Você já realizou {self.QTD_SAQUE_MAXIMO_DIA} saques hoje. Por favor, aguarde até o dia seguinte ⚠️")
         else:
-            msg = "❌Operação não permitida. Valor excede o saldo ou o limite de saque❌"
+            msg = "❌ Operação não permitida. Valor excede o saldo ou o limite de saque ❌"
             print(msg)
 
     def gravar_log(self, status, valor, msg):
@@ -35,7 +37,7 @@ class Transacao:
         print("Log gravado com sucesso!")
                                                      
     def consultar_log(self):
-        tools = Util()
+
 
         print("\n-----------------------------------------------------------------------------")
         print("Movimentações do dia:")
@@ -47,5 +49,5 @@ class Transacao:
         else:
             print("❌ Nenhuma movimentação encontrado!")
         print("-----------------------------------------------------------------------------")
-        saldo_final = tools.formatToReal(self.saldo)
+        saldo_final = self.tools.formatToReal(self.saldo)
         print(f"💰 Saldo atual: {saldo_final}")
