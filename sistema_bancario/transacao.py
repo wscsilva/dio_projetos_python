@@ -7,6 +7,7 @@ class Transacao:
     qtd_saque_dia = 1
     QTD_SAQUE_MAXIMO_DIA = 3
     logs = []
+    LOG_FILE = "transacoes.log"
 
     util = Util()
 
@@ -33,9 +34,21 @@ class Transacao:
 
     def gravar_log(self, status, valor, msg):
         data_hora = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
-        self.logs.append(f"{data_hora} | {msg} |{valor:.2f}| {status}")
+        mensagem = f"{data_hora} | {msg} |{valor:.2f}| {status}"
+        self.logs.append(mensagem)
+
+        self.gravar_log_arquivo(mensagem)
+
         print("Log gravado com sucesso!")
-                                                     
+
+    def gravar_log_arquivo(self, mensagem):
+        try:
+            with open(self.LOG_FILE, "a", encoding="utf-8") as arquivo:
+                arquivo.write(mensagem + "\n")
+                print("Log gravado com sucesso.")
+        except Exception as e:
+            print(f"Erro ao gravar log! , {e}")
+
     def consultar_log(self):
 
 
