@@ -78,4 +78,4 @@ Onde:
 Desenvolvido para fins educacionais e aprimoramento do conhecimento em Python. ✨
 
 ## Contato
-📧 **Email:** diasisilva@hotmail.om
+📧 **Email:** diasisilva@hotmail.com
