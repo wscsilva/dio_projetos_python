@@ -4,7 +4,8 @@
 ### Adicionado
 
 ### Alterado
-- Alteração no formato do arquivo de log gravado, segue a tabela de exemplo
+- Alteração no formato do arquivo de log gravado, segue a tabela de exemplo:
+
 | Tipo  | Data      | Descrição                       | Valor     |
 |-------|-----------|---------------------------------|-----------|
 |D      | 27/02/2025| Depósito realizado com sucesso  | R$ 500,00 |
