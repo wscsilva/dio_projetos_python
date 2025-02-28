@@ -14,37 +14,37 @@ class Transacao:
     def depositar(self, valor):
         print(f"Saldo anterior: {self.saldo}")
         self.saldo += valor
-        msg = "➕ Depósito realizado com sucesso!"
-        self.gravar_log("D", valor, msg)
+        movimentacao = "➕ Depósito realizado com sucesso!"
+        self.gravar_log("D", valor, movimentacao)
         print(f'✅ Depósito realizado com sucesso! Saldo atual: {self.util.formatToReal(self.saldo)}')
 
     def retirar(self, valor):
         if valor <= self.saldo and valor <= self.limite:
             if self.qtd_saque_dia <= self.QTD_SAQUE_MAXIMO_DIA:
                 self.saldo -= valor
-                msg = "➖ Saque realizado com sucesso!   "
-                self.gravar_log("S", valor, msg)
+                movimentacao = "➖ Saque realizado com sucesso!   "
+                self.gravar_log("S", valor, movimentacao)
                 self.qtd_saque_dia += 1
                 print(f"✅ Saque de {self.util.formatToReal(valor)} realizado com sucesso!")
             else:
                 print(f"⚠️ Você já realizou {self.QTD_SAQUE_MAXIMO_DIA} saques hoje. Por favor, aguarde até o dia seguinte ⚠️")
         else:
-            msg = "❌ Operação não permitida. Valor excede o saldo ou o limite de saque ❌"
-            print(msg)
+            movimentacao = "❌ Operação não permitida. Valor excede o saldo ou o limite de saque ❌"
+            print(movimentacao)
 
-    def gravar_log(self, status, valor, msg):
+    def gravar_log(self, status, valor, movimentacao):
         data_hora = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
-        mensagem = f"{data_hora} | {msg} |{valor:.2f}| {status}"
-        self.logs.append(mensagem)
+        movimentacao = f"{status}|{data_hora} | {movimentacao} |{valor:.2f} "
+        self.logs.append(movimentacao)
 
-        self.gravar_log_arquivo(mensagem)
+        self.gravar_log_arquivo(movimentacao)
 
         print("Log gravado com sucesso!")
 
-    def gravar_log_arquivo(self, mensagem):
+    def gravar_log_arquivo(self, movimentacao):
         try:
             with open(self.LOG_FILE, "a", encoding="utf-8") as arquivo:
-                arquivo.write(mensagem + "\n")
+                arquivo.write(movimentacao + "\n")
                 print("Log gravado com sucesso.")
         except Exception as e:
             print(f"Erro ao gravar log! , {e}")
