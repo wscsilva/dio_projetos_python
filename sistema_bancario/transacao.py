@@ -53,7 +53,7 @@ class Transacao:
 
 
         print("\n-----------------------------------------------------------------------------")
-        print("Movimentações do dia:")
+        print(f"Movimentações do dia: {self.util.formatDate("10/01/2025")}")
         print("-----------------------------------------------------------------------------")
         logs = self.logs
         if logs:
