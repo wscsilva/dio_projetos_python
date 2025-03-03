@@ -52,10 +52,10 @@ class Transacao:
     def consultar_log(self):
 
 
-        print("\n-----------------------------------------------------------------------------")
-        print(f"Movimentações do dia: {self.util.formatDate("10/01/2025")}")
-        print("-----------------------------------------------------------------------------")
         logs = self.logs
+        print("\n-----------------------------------------------------------------------------")
+        print(f"Movimentações do dia: {self.util.formatDate()} ==> Total Movimento(s): {len(logs)}")
+        print("-----------------------------------------------------------------------------")
         if logs:
             for log in self.logs:
                 print(log)
